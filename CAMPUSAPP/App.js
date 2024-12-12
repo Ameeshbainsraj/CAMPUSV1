@@ -3,7 +3,7 @@ import { StyleSheet, View, Text } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { FontAwesome } from '@expo/vector-icons';
-import LoginPage from './Login'; // Correctly import LoginPage
+import LoginPage from './Login'; // Correctly imported LoginPage
 
 // Screens for the tabs
 function HomeScreen() {
@@ -37,7 +37,7 @@ export default function MyCampusApp() {
   return (
     <NavigationContainer>
       <Tab.Navigator
-        initialRouteName="Login" // Set Login as the initial route
+        initialRouteName="Home"
         screenOptions={{
           tabBarActiveTintColor: '#007bff',
           tabBarInactiveTintColor: '#8e8e8e',
@@ -61,7 +61,7 @@ export default function MyCampusApp() {
         />
         <Tab.Screen
           name="Login"
-          component={LoginPage} // Use the imported LoginPage component
+          component={LoginPage} // Correctly connected to LoginPage
           options={{
             tabBarLabel: 'Login',
             tabBarIcon: ({ color, size }) => <FontAwesome name="sign-in" size={size} color={color} />,
