@@ -20,7 +20,7 @@ function LoginPage() {
   return (
     <View style={styles.container}>
       <Video
-        source={require('C:\\Users\\amees\\Videos\\MAIN PROJECT FOR YEAR - GROUP\\CAMPUSV1\\CAMPUSAPP\\assets\\video\\WhatsApp Video 2024-12-12 at 20.30.47_a15acf7c.mp4')}
+        source={require('../assets/video/vid1.mp4')}
         style={styles.backgroundVideo}
         isMuted
         isLooping
