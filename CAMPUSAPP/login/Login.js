@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
-import { Video } from 'expo-av';
+
 import styles from './LoginPageStyles'; // Import the external styles
 
 function LoginPage() {
@@ -19,14 +19,7 @@ function LoginPage() {
 
   return (
     <View style={styles.container}>
-      <Video
-        source={require('../assets/video/vid1.mp4')}
-        style={styles.backgroundVideo}
-        isMuted
-        isLooping
-        shouldPlay
-        resizeMode="cover"
-      />
+
       <View style={styles.overlay}>
         <Text style={styles.header}>Welcome to MyCampusApp</Text>
         <TextInput
