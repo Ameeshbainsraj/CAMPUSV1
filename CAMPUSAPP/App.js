@@ -2,11 +2,7 @@ import React from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { FontAwesome } from '@expo/vector-icons';
-import LoginScreen from './login'; // Import the Login screen from login.js
-import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
-import LoginScreen from './login/Login'; // Correct import path to Login.js inside login folder
+import LoginScreen from './/login/Login'; // Import the Login screen from login.js
 
 // Home Screen
 function HomeScreen({ navigation }) {
