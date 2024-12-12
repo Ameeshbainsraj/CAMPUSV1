@@ -4,6 +4,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { FontAwesome } from '@expo/vector-icons';
 import LoginPage from './Login'; // Correctly imported LoginPage
+import FeedScreen1 from './myFeed';
 
 // Screens for the tabs
 function HomeScreen() {
@@ -53,7 +54,7 @@ export default function MyCampusApp() {
         />
         <Tab.Screen
           name="Feed"
-          component={FeedScreen}
+          component={FeedScreen1}
           options={{
             tabBarLabel: 'Feed',
             tabBarIcon: ({ color, size }) => <FontAwesome name="rss" size={size} color={color} />,

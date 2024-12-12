@@ -1,23 +1,60 @@
 import React, { useState } from 'react';
-import { View, FlatList, Text, TouchableOpacity, TextInput, StyleSheet } from 'react-native';
+import {
+  View,
+  FlatList,
+  Text,
+  TouchableOpacity,
+  TextInput,
+  StyleSheet,
+  Modal,
+} from 'react-native';
+import Icon from 'react-native-vector-icons/Ionicons';
 import { GlobalStyles, colors } from './style/GlobalStyles';
 
 const MyFeed = () => {
   const [posts, setPosts] = useState([
-    { id: '1', content: 'Welcome to My Campus!', likes: 5 },
-    { id: '2', content: 'Don’t forget to check your timetable.', likes: 3 },
+    {
+      id: '1',
+      type: 'image',
+      likes: 0,
+      comments: ['Great post!', 'Love this!'],
+    },
+    {
+      id: '2',
+      type: 'video',
+      likes: 0,
+      comments: ['Amazing video!', 'Cool!'],
+    },
   ]);
-  const [comment, setComment] = useState('');
+  const [currentComments, setCurrentComments] = useState([]);
+  const [commentText, setCommentText] = useState('');
+  const [modalVisible, setModalVisible] = useState(false);
+  const [activePostId, setActivePostId] = useState(null); // To track which post's comments are being viewed/added
 
   const handleLike = (id) => {
     setPosts((prevPosts) =>
-      prevPosts.map((post) => post.id === id ? { ...post, likes: post.likes + 1 } : post)
+      prevPosts.map((post) =>
+        post.id === id ? { ...post, likes: post.likes + 1 } : post
+      )
     );
   };
 
-  const handleShare = (content) => {
-    // Placeholder for sharing logic
-    console.log(`Shared: ${content}`);
+  const openComments = (comments, postId) => {
+    setCurrentComments(comments);
+    setActivePostId(postId); // Set the active post for which comments are being opened
+    setModalVisible(true);
+  };
+
+  const addComment = () => {
+    if (commentText.trim()) {
+      setCurrentComments((prev) => [...prev, commentText]);
+      setCommentText('');
+    }
+  };
+
+  const closeModal = () => {
+    setModalVisible(false);
+    setActivePostId(null); // Reset the active post when closing the modal
   };
 
   return (
@@ -28,21 +65,54 @@ const MyFeed = () => {
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => (
           <View style={styles.post}>
-            <Text style={styles.postText}>{item.content}</Text>
+            <View style={[styles.media, styles.placeholder]}>
+              <Text style={styles.placeholderText}>
+                {item.type === 'image' ? 'Image' : 'Video'}
+              </Text>
+            </View>
             <View style={styles.actions}>
               <TouchableOpacity onPress={() => handleLike(item.id)}>
-                <Text style={styles.actionText}>👍 {item.likes}</Text>
+                <Icon
+                  name={item.likes > 0 ? 'heart' : 'heart-outline'}
+                  size={24}
+                  color={item.likes > 0 ? 'red' : colors.primary}
+                />
               </TouchableOpacity>
-              <TouchableOpacity onPress={() => console.log('Comment')}>
-                <Text style={styles.actionText}>💬 Comment</Text>
-              </TouchableOpacity>
-              <TouchableOpacity onPress={() => handleShare(item.content)}>
-                <Text style={styles.actionText}>🔗 Share</Text>
+              <Text style={styles.likeCount}>{item.likes} Likes</Text>
+              <TouchableOpacity onPress={() => openComments(item.comments, item.id)}>
+                <Icon name="chatbubble-outline" size={24} color={colors.primary} />
               </TouchableOpacity>
             </View>
           </View>
         )}
       />
+      <Modal visible={modalVisible} animationType="slide" transparent>
+        <View style={styles.modalContainer}>
+          <View style={styles.commentsBox}>
+            <FlatList
+              data={currentComments}
+              keyExtractor={(_, index) => index.toString()}
+              renderItem={({ item }) => (
+                <Text style={styles.comment}>{item}</Text>
+              )}
+            />
+            <View style={styles.commentInputContainer}>
+              <TextInput
+                style={styles.commentInput}
+                placeholder="Add a comment..."
+                value={commentText}
+                onChangeText={setCommentText}
+              />
+              <TouchableOpacity onPress={addComment}>
+                <Icon name="send" size={24} color={colors.primary} />
+              </TouchableOpacity>
+            </View>
+            <TouchableOpacity style={styles.closeModal} onPress={closeModal}>
+              <Text style={styles.closeModalText}>Close</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </Modal>
     </View>
   );
 };
@@ -50,7 +120,7 @@ const MyFeed = () => {
 const styles = StyleSheet.create({
   post: {
     backgroundColor: '#fff',
-    padding: 15,
+    padding: 10,
     borderRadius: 10,
     marginBottom: 10,
     shadowColor: '#000',
@@ -58,16 +128,66 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 1 },
     elevation: 2,
   },
-  postText: {
-    fontSize: 16,
-    color: colors.text,
+  media: {
+    width: '100%',
+    height: 200,
+    borderRadius: 10,
+  },
+  placeholder: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#e0e0e0', // Light gray background
+  },
+  placeholderText: {
+    color: '#888',
+    fontSize: 18,
+    fontWeight: 'bold',
   },
   actions: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    alignItems: 'center',
     marginTop: 10,
   },
-  actionText: {
+  likeCount: {
+    marginLeft: 10,
+    fontSize: 16,
+    color: colors.text,
+  },
+  modalContainer: {
+    flex: 1,
+    backgroundColor: 'rgba(0,0,0,0.5)',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  commentsBox: {
+    backgroundColor: '#fff',
+    padding: 20,
+    borderRadius: 10,
+    width: '90%',
+    maxHeight: '80%',
+  },
+  comment: {
+    fontSize: 16,
+    color: colors.text,
+    marginBottom: 5,
+  },
+  commentInputContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginTop: 10,
+  },
+  commentInput: {
+    flex: 1,
+    backgroundColor: '#f0f0f0',
+    padding: 10,
+    borderRadius: 10,
+    marginRight: 10,
+  },
+  closeModal: {
+    marginTop: 10,
+    alignItems: 'center',
+  },
+  closeModalText: {
     color: colors.primary,
     fontWeight: 'bold',
   },
