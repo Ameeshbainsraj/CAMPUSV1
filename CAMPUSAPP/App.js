@@ -3,6 +3,7 @@ import { StyleSheet, View, Text } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { FontAwesome } from '@expo/vector-icons';
+import LoginScreen from 'login'; // Import the Login screen from login.js
 
 // Screens for the tabs
 function HomeScreen() {
@@ -17,14 +18,6 @@ function FeedScreen() {
   return (
     <View style={styles.screenContainer}>
       <Text>Welcome to the Feed Screen</Text>
-    </View>
-  );
-}
-
-function LoginScreen() {
-  return (
-    <View style={styles.screenContainer}>
-      <Text>Login Page</Text>
     </View>
   );
 }
@@ -60,7 +53,7 @@ export default function MyCampusApp() {
         />
         <Tab.Screen
           name="Login"
-          component={LoginScreen}
+          component={LoginScreen} // Use the LoginScreen from login.js
           options={{
             tabBarLabel: 'Login',
             tabBarIcon: ({ color, size }) => <FontAwesome name="sign-in" size={size} color={color} />,
@@ -83,7 +76,7 @@ export default function MyCampusApp() {
 function ProfileScreen() {
   return (
     <View style={styles.screenContainer}>
-      <Text></Text>
+      <Text>Welcome to the Profile Screen</Text>
     </View>
   );
 }
