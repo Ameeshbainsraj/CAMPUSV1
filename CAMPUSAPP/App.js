@@ -1,90 +1,71 @@
+import React from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, View, Text } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { FontAwesome } from '@expo/vector-icons';
 import LoginScreen from './/login/Login'; // Import the Login screen from login.js
 
-// Screens for the tabs
-function HomeScreen() {
+// Home Screen
+function HomeScreen({ navigation }) {
   return (
     <View style={styles.screenContainer}>
-      <Text>Welcome to the Home Screen</Text>
+      <Text style={styles.title}>Welcome to the Home Screen</Text>
+      {/* Button to navigate to Login */}
+      <TouchableOpacity
+        style={styles.button}
+        onPress={() => navigation.navigate('Login')}
+      >
+        <Text style={styles.buttonText}>Go to Login</Text>
+      </TouchableOpacity>
     </View>
   );
 }
 
+// Feed Screen (Optional)
 function FeedScreen() {
   return (
     <View style={styles.screenContainer}>
-      <Text>Welcome to the Feed Screen</Text>
+      <Text style={styles.title}>Welcome to the Feed Screen</Text>
     </View>
   );
 }
 
-// Create Bottom Tab Navigation
-const Tab = createBottomTabNavigator();
+// Create Stack Navigator
+const Stack = createStackNavigator();
 
 export default function MyCampusApp() {
   return (
     <NavigationContainer>
-      <Tab.Navigator
-        initialRouteName="Home"
-        screenOptions={{
-          tabBarActiveTintColor: '#007bff',
-          tabBarInactiveTintColor: '#8e8e8e',
-        }}
-      >
-        <Tab.Screen
-          name="Home"
-          component={HomeScreen}
-          options={{
-            tabBarLabel: 'Home',
-            tabBarIcon: ({ color, size }) => <FontAwesome name="home" size={size} color={color} />,
-          }}
-        />
-        <Tab.Screen
-          name="Feed"
-          component={FeedScreen}
-          options={{
-            tabBarLabel: 'Feed',
-            tabBarIcon: ({ color, size }) => <FontAwesome name="rss" size={size} color={color} />,
-          }}
-        />
-        <Tab.Screen
-          name="Login"
-          component={LoginScreen} // Use the LoginScreen from login.js
-          options={{
-            tabBarLabel: 'Login',
-            tabBarIcon: ({ color, size }) => <FontAwesome name="sign-in" size={size} color={color} />,
-          }}
-        />
-        {/* You can add more tabs here */}
-        <Tab.Screen
-          name="Profile"
-          component={ProfileScreen}
-          options={{
-            tabBarLabel: 'Profile',
-            tabBarIcon: ({ color, size }) => <FontAwesome name="user" size={size} color={color} />,
-          }}
-        />
-      </Tab.Navigator>
+      <Stack.Navigator initialRouteName="Home">
+        <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="Login" component={LoginScreen} />
+        <Stack.Screen name="Feed" component={FeedScreen} />
+      </Stack.Navigator>
     </NavigationContainer>
-  );
-}
-
-function ProfileScreen() {
-  return (
-    <View style={styles.screenContainer}>
-      <Text>Welcome to the Profile Screen</Text>
-    </View>
   );
 }
 
 const styles = StyleSheet.create({
   screenContainer: {
     flex: 1,
-    alignItems: 'center',
     justifyContent: 'center',
+    alignItems: 'center',
+    padding: 20,
+    backgroundColor: '#f5f5f5',
+  },
+  title: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    marginBottom: 20,
+  },
+  button: {
+    backgroundColor: '#007bff',
+    padding: 15,
+    borderRadius: 10,
+    marginTop: 20,
+  },
+  buttonText: {
+    color: '#fff',
+    fontWeight: 'bold',
+    fontSize: 16,
   },
 });
