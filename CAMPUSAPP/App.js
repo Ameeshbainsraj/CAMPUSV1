@@ -38,7 +38,7 @@ export default function MyCampusApp() {
   return (
     <NavigationContainer>
       <Tab.Navigator
-        initialRouteName="Home"
+        initialRouteName="Login" // Set Login as the initial route
         screenOptions={{
           tabBarActiveTintColor: '#007bff',
           tabBarInactiveTintColor: '#8e8e8e',

@@ -1,25 +1,33 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity } from 'react-native';
+<<<<<<< HEAD
 
+=======
+>>>>>>> 9a9f278759a79105a6aafc735c2346e06d433b82
 import styles from './LoginPageStyles'; // Ensure this path is correct
 
 export default function LoginPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const navigation = useNavigation(); // Hook for navigation
 
   const handleLogin = () => {
-    if (!email || !password) {
-      setError('Please enter both email and password');
-    } else {
-      console.log('Logging in with:', { email, password });
+    // Check hardcoded credentials
+    if (email === 'admin@gmail.com' && password === 'admin') {
       setError('');
+      navigation.navigate('Home'); // Navigate to Home page
+    } else {
+      setError('Invalid email or password');
     }
   };
 
   return (
     <View style={styles.container}>
+<<<<<<< HEAD
 
+=======
+>>>>>>> 9a9f278759a79105a6aafc735c2346e06d433b82
       <View style={styles.overlay}>
         <Text style={styles.header}>Welcome to MyCampusApp</Text>
         <TextInput
