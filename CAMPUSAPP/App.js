@@ -3,7 +3,7 @@ import { StyleSheet, View, Text } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { FontAwesome } from '@expo/vector-icons';
-import LoginPage from './Login'; // Import LoginPage component
+import LoginPage from './Login'; // Correctly import LoginPage
 
 // Screens for the tabs
 function HomeScreen() {
@@ -37,7 +37,7 @@ export default function MyCampusApp() {
   return (
     <NavigationContainer>
       <Tab.Navigator
-        initialRouteName="Home"
+        initialRouteName="Login" // Set Login as the initial route
         screenOptions={{
           tabBarActiveTintColor: '#007bff',
           tabBarInactiveTintColor: '#8e8e8e',
