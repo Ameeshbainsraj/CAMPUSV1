@@ -1,8 +1,9 @@
-import { StatusBar } from 'expo-status-bar';
+import React from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { FontAwesome } from '@expo/vector-icons';
+import LoginPage from 'login'; // Import LoginPage component
 
 // Screens for the tabs
 function HomeScreen() {
@@ -21,10 +22,10 @@ function FeedScreen() {
   );
 }
 
-function LoginScreen() {
+function ProfileScreen() {
   return (
     <View style={styles.screenContainer}>
-      <Text>Login Page</Text>
+      <Text>Welcome to the Profile Screen</Text>
     </View>
   );
 }
@@ -60,13 +61,12 @@ export default function MyCampusApp() {
         />
         <Tab.Screen
           name="Login"
-          component={LoginScreen}
+          component={LoginPage} // Use the imported LoginPage component
           options={{
             tabBarLabel: 'Login',
             tabBarIcon: ({ color, size }) => <FontAwesome name="sign-in" size={size} color={color} />,
           }}
         />
-        {/* You can add more tabs here */}
         <Tab.Screen
           name="Profile"
           component={ProfileScreen}
@@ -77,14 +77,6 @@ export default function MyCampusApp() {
         />
       </Tab.Navigator>
     </NavigationContainer>
-  );
-}
-
-function ProfileScreen() {
-  return (
-    <View style={styles.screenContainer}>
-      <Text></Text>
-    </View>
   );
 }
 
