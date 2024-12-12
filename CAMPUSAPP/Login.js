@@ -18,14 +18,7 @@ function LoginPage() {
 
   return (
     <View style={styles.container}>
-      <Video
-        source={require('../../assets/videos/background.mp4')}
-        style={styles.backgroundVideo}
-        isMuted
-        isLooping
-        shouldPlay
-        resizeMode="cover"
-      />
+
       <View style={styles.overlay}>
         <Text style={styles.header}>Welcome to MyCampusApp</Text>
         <TextInput
