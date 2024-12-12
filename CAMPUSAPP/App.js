@@ -3,7 +3,7 @@ import { StyleSheet, View, Text } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { FontAwesome } from '@expo/vector-icons';
-import LoginScreen from './login'; // Import the Login screen from login.js
+import LoginScreen from './/login/Login'; // Import the Login screen from login.js
 
 // Screens for the tabs
 function HomeScreen() {
