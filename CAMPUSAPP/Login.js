@@ -1,9 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity } from 'react-native';
-<<<<<<< HEAD
 
-=======
->>>>>>> 9a9f278759a79105a6aafc735c2346e06d433b82
 import styles from './LoginPageStyles'; // Ensure this path is correct
 
 export default function LoginPage() {
@@ -24,10 +21,7 @@ export default function LoginPage() {
 
   return (
     <View style={styles.container}>
-<<<<<<< HEAD
 
-=======
->>>>>>> 9a9f278759a79105a6aafc735c2346e06d433b82
       <View style={styles.overlay}>
         <Text style={styles.header}>Welcome to MyCampusApp</Text>
         <TextInput
