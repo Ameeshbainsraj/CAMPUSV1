@@ -1,19 +1,17 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity } from 'react-native';
-
 import styles from './LoginPageStyles'; // Ensure this path is correct
 
-
-export default function LoginPage({ navigation }) { // Accept navigation as a prop
+export default function LoginPage({ setIsLoggedIn }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
 
   const handleLogin = () => {
     // Check hardcoded credentials
-    if (email === 'Admin@gmail.com' && password === 'admin') {
+    if (email === 'admin@gmail.com' && password === 'admin') {
       setError('');
-      navigation.navigate('./App'); // Navigate to Home page
+      setIsLoggedIn(true); // Set the login state to true
     } else {
       setError('Invalid email or password');
     }
@@ -21,7 +19,6 @@ export default function LoginPage({ navigation }) { // Accept navigation as a pr
 
   return (
     <View style={styles.container}>
-
       <View style={styles.overlay}>
         <Text style={styles.header}>Welcome to MyCampusApp</Text>
         <TextInput
