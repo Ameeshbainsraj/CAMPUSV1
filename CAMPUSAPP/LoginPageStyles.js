@@ -17,30 +17,37 @@ export default StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    backgroundColor: 'rgba(0, 0, 0, 0.5)', // Add a transparent overlay
     width: '100%',
+    padding: 20,
   },
   header: {
     fontSize: 24,
+    fontWeight: 'bold',
     color: '#fff',
     marginBottom: 20,
   },
   input: {
-    width: '80%',
-    padding: 10,
-    marginVertical: 10,
+    width: '100%',
+    height: 50,
     backgroundColor: '#fff',
     borderRadius: 8,
+    paddingHorizontal: 10,
+    marginBottom: 15,
   },
   button: {
-    marginTop: 20,
-    padding: 15,
+    width: '100%',
+    height: 50,
     backgroundColor: '#007bff',
+    justifyContent: 'center',
+    alignItems: 'center',
     borderRadius: 8,
+    marginTop: 10,
   },
   buttonText: {
     color: '#fff',
     fontWeight: 'bold',
+    fontSize: 16,
   },
   registerButton: {
     marginTop: 15,
@@ -51,6 +58,6 @@ export default StyleSheet.create({
   },
   errorText: {
     color: 'red',
-    marginTop: 10,
+    marginBottom: 10,
   },
 });

@@ -1,19 +1,18 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity } from 'react-native';
-import { useNavigation } from '@react-navigation/native';  // Import useNavigation hook
+import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
+import { Video } from 'expo-av'; // Import Video from expo-av
 import styles from './LoginPageStyles'; // Ensure this path is correct
 
 export default function LoginPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
-  const navigation = useNavigation(); // Use the hook for navigation
 
   const handleLogin = () => {
     // Check hardcoded credentials
     if (email === 'admin@gmail.com' && password === 'admin') {
       setError('');
-      navigation.navigate('Home'); // Navigate to Home page
+      alert('Login Successful!');
     } else {
       setError('Invalid email or password');
     }
@@ -21,6 +20,14 @@ export default function LoginPage() {
 
   return (
     <View style={styles.container}>
+      <Video
+        source={require('./assets/videos/background.mp4')} // Ensure correct path
+        style={styles.backgroundVideo}
+        isMuted
+        isLooping
+        shouldPlay
+        resizeMode="cover"
+      />
       <View style={styles.overlay}>
         <Text style={styles.header}>Welcome to MyCampusApp</Text>
         <TextInput
