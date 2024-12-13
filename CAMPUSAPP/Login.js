@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
 import styles from './LoginPageStyles'; // Ensure this path is correct
-import Video from 'react-native-video'; // Import react-native-video
+import { Video } from 'expo-av'; // Import Video from expo-av
 
 export default function LoginPage() {
   const [email, setEmail] = useState('');
@@ -9,8 +9,7 @@ export default function LoginPage() {
   const [error, setError] = useState('');
 
   const handleLogin = () => {
-    // Check hardcoded credentials
-    if (email === 'Admin@gmail.com' && password === 'admin') {
+    if (email === 'admin@gmail.com' && password === 'admin') {
       setError('');
       alert('Login Successful!');
     } else {
@@ -21,11 +20,12 @@ export default function LoginPage() {
   return (
     <View style={styles.container}>
       <Video
-        source={require('./assets/videos/background.mp4')} // Ensure the video file path is correct
+        source={require('./assets/videos/background.mp4')} // Ensure the video file is in the correct path
         style={styles.backgroundVideo}
-        repeat
+        isLooping
+        shouldPlay
         resizeMode="cover"
-        muted
+        muted // Mute the video for a better user experience
       />
       <View style={styles.overlay}>
         <Text style={styles.header}>Welcome to MyCampusApp</Text>
@@ -55,3 +55,4 @@ export default function LoginPage() {
     </View>
   );
 }
+
