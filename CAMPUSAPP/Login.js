@@ -9,7 +9,7 @@ export default function LoginPage({ setIsLoggedIn }) {
 
   const handleLogin = () => {
     // Check hardcoded credentials
-    if (email === 'admin@gmail.com' && password === 'admin') {
+    if (email === 'Admin@gmail.com' && password === 'admin') {
       setError('');
       setIsLoggedIn(true); // Set the login state to true
     } else {
