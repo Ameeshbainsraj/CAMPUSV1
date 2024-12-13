@@ -10,7 +10,7 @@ export default function LoginPage() {
 
   const handleLogin = () => {
     // Check hardcoded credentials
-    if (email === 'admin@gmail.com' && password === 'admin') {
+    if (email === 'Admin@gmail.com' && password === 'admin') {
       setError('');
       alert('Login Successful!');
     } else {
