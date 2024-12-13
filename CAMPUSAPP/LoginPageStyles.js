@@ -1,6 +1,4 @@
-import { StyleSheet } from 'react-native';
-
-export default StyleSheet.create({
+const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
@@ -17,9 +15,9 @@ export default StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'rgba(0, 0, 0, 0.5)', // Add a transparent overlay
-    width: '100%',
+    backgroundColor: 'rgba(0, 0, 0, 0.5)', // Semi-transparent overlay
     padding: 20,
+    width: '100%',
   },
   header: {
     fontSize: 24,
@@ -28,36 +26,33 @@ export default StyleSheet.create({
     marginBottom: 20,
   },
   input: {
-    width: '100%',
-    height: 50,
+    width: '90%',
+    padding: 15,
+    marginVertical: 10,
     backgroundColor: '#fff',
-    borderRadius: 8,
-    paddingHorizontal: 10,
-    marginBottom: 15,
-  },
-  button: {
-    width: '100%',
-    height: 50,
-    backgroundColor: '#007bff',
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 8,
-    marginTop: 10,
-  },
-  buttonText: {
-    color: '#fff',
-    fontWeight: 'bold',
-    fontSize: 16,
-  },
-  registerButton: {
-    marginTop: 15,
-  },
-  registerText: {
-    color: '#fff',
-    textDecorationLine: 'underline',
+    borderRadius: 5,
   },
   errorText: {
     color: 'red',
-    marginBottom: 10,
+    marginVertical: 10,
   },
+  button: {
+    backgroundColor: '#ff6347',
+    padding: 15,
+    borderRadius: 5,
+    width: '90%',
+    alignItems: 'center',
+    marginVertical: 10,
+  },
+  buttonText: {
+    color: '#fff',
+    fontSize: 16,
+  },
+  registerButton: {
+    marginTop: 10,
+  },
+  registerText: {
+    color: '#fff',
+    fontSize: 14,
+  },
 });

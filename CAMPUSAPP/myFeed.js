@@ -29,7 +29,6 @@ const MyFeed = () => {
   const [currentComments, setCurrentComments] = useState([]);
   const [commentText, setCommentText] = useState('');
   const [modalVisible, setModalVisible] = useState(false);
-  const [activePostId, setActivePostId] = useState(null); // To track which post's comments are being viewed/added
 
   const handleLike = (id) => {
     setPosts((prevPosts) =>
@@ -39,22 +38,14 @@ const MyFeed = () => {
     );
   };
 
-  const openComments = (comments, postId) => {
+  const openComments = (comments) => {
     setCurrentComments(comments);
-    setActivePostId(postId); // Set the active post for which comments are being opened
     setModalVisible(true);
   };
 
   const addComment = () => {
-    if (commentText.trim()) {
-      setCurrentComments((prev) => [...prev, commentText]);
-      setCommentText('');
-    }
-  };
-
-  const closeModal = () => {
-    setModalVisible(false);
-    setActivePostId(null); // Reset the active post when closing the modal
+    setCurrentComments((prev) => [...prev, commentText]);
+    setCommentText('');
   };
 
   return (
@@ -79,7 +70,7 @@ const MyFeed = () => {
                 />
               </TouchableOpacity>
               <Text style={styles.likeCount}>{item.likes} Likes</Text>
-              <TouchableOpacity onPress={() => openComments(item.comments, item.id)}>
+              <TouchableOpacity onPress={() => openComments(item.comments)}>
                 <Icon name="chatbubble-outline" size={24} color={colors.primary} />
               </TouchableOpacity>
             </View>
@@ -107,7 +98,10 @@ const MyFeed = () => {
                 <Icon name="send" size={24} color={colors.primary} />
               </TouchableOpacity>
             </View>
-            <TouchableOpacity style={styles.closeModal} onPress={closeModal}>
+            <TouchableOpacity
+              style={styles.closeModal}
+              onPress={() => setModalVisible(false)}
+            >
               <Text style={styles.closeModalText}>Close</Text>
             </TouchableOpacity>
           </View>
