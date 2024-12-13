@@ -1,17 +1,19 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity } from 'react-native';
+import { useNavigation } from '@react-navigation/native';  // Import useNavigation hook
 import styles from './LoginPageStyles'; // Ensure this path is correct
 
-export default function LoginPage({ setIsLoggedIn }) {
+export default function LoginPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const navigation = useNavigation(); // Use the hook for navigation
 
   const handleLogin = () => {
     // Check hardcoded credentials
-    if (email === 'Admin@gmail.com' && password === 'admin') {
+    if (email === 'admin@gmail.com' && password === 'admin') {
       setError('');
-      setIsLoggedIn(true); // Set the login state to true
+      navigation.navigate('Home'); // Navigate to Home page
     } else {
       setError('Invalid email or password');
     }
